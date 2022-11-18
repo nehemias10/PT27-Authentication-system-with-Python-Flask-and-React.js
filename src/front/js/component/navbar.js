@@ -1,19 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
+  const navigate = useNavigate();
+  const FuncionCerrarSesion = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("token_userID");
+    localStorage.removeItem("token_userEmail");
+    localStorage.removeItem("user");
+    navigate("/demo");
+    setTimeout(() => {
+      location.reload();
+    }, 1500);
+  };
+  const { store, actions } = useContext(Context);
+  useEffect(() => {
+    actions.GetValidacion(localStorage.getItem("token"));
+  }, []);
+  return (
+    <nav className="navbar navb " id="navbar">
+      <div className="container coco d-flex justify-content-center">
+        
+      </div>
+      {store.login ? (
+        <div class="btn-group dropleft">
+          <button
+            class="btn btn-lg dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-user" id="loginicon"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a onClick={FuncionCerrarSesion} class="dropdown-item">
+              Cerrar sesion
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="login-style">
+          <Link to="/demo" className="logeate">
+            Login
+          </Link>
+        </div>
+      )}
+    </nav>
+  );
 };

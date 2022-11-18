@@ -1,41 +1,74 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import "../../styles/login.css";
 import { Context } from "../store/appContext";
 
-export const Demo = () => {
-	const { store, actions } = useContext(Context);
 
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
+export const Demo = () => {
+  const { store, actions } = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState(false); // Si no contiene datos
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (email == "" || password == "") {
+      setAlert(true);
+    }
+    if (email != "" && password != "") {
+      actions.Login(email, password);
+    }
+  };
+
+  return (
+    <div class="container login-container">
+      <div class="row login-row login">
+        <div class="col-md-6 login-form-1" id="form1">
+       
+          <h3>Inicia sesión</h3>
+
+          <form class="form-group">
+            <input
+              id="user"
+              type="text"
+              class="form-control"
+              placeholder="Tu correo electrónico *"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <div class="form-group">
+              <input
+                id="pass"
+                type="password"
+                class="form-control"
+                placeholder="Tu contraseña *"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div class="form-group">
+              <input
+                onClick={(e) => {
+                  handleClick(e);
+                }}
+                type="submit"
+                class="btnSubmit"
+                value="Login"
+              />
+              <Link to="/register">
+                <input type="submit" class="btnSubmit" value="Regístrate" />
+              </Link>
+              {alert && (
+                <div class="alert alert-danger" id="alertSI" role="alert">
+                  Completa datos
+                </div>
+              )}
+            </div>
+          </form>
+         
+          
+        </div>
+        
+      </div>
+    </div>
+  );
 };

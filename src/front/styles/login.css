@@ -1,0 +1,92 @@
+.login-container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .login-logo {
+    position: relative;
+    margin-left: -41.5%;
+  }
+  .login-logo img {
+    position: absolute;
+    width: 20%;
+    margin-top: 19%;
+    background: #282726;
+    border-radius: 4.5rem;
+    padding: 5%;
+  }
+  .login-form-1 {
+    padding: 9%;
+    background: blue
+    
+  }
+  .login-form-1 h3 {
+    text-align: center;
+    margin-bottom: 12%;
+    color: white;
+  }
+  
+  .btnSubmit {
+    font-weight: 600;
+    width: 45%;
+    color: #282726;
+    background-color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    margin: 5px;
+  }
+  
+  .btnForgetPwd {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btnForgetPwd:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+  .login-row {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  
+  .fail {
+    color: red;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  
+  .auth {
+    margin: 3px 1;
+    color: red;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+  .login-style {
+    border-radius: 20px;
+    background: blue;
+    height: 35px;
+    padding-top: 4px;
+    width: 83px;
+    color: white;
+    align-self: center;
+    text-align: center;
+    text-decoration: none;
+  }
+  .logeate {
+    color: #f4f5f6;
+    text-decoration: none;
+  }
+  .logeate:hover {
+    color: #060606;
+    text-decoration: none;
+  }
+  
+  .logoproyecto {
+    border-radius: 6px;
+    margin-left: 34%;
+    margin-bottom: 7px;
+  }
+  
+  
